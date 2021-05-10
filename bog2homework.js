@@ -1,20 +1,3 @@
-class config{
-    constructor(list){
-        this.list = list;
-    }
-}
-
-class catalog extends config{
-    render(){
-        this.list.forEach((item)=>{
-           //...
-        });
-    }
-}
-
-
-
-
 //event listeners
 let tab_array = document.getElementsByClassName("tab-item");
 let content_array = document.querySelectorAll(".tab-content");
@@ -35,3 +18,44 @@ for(let i = 0; i < tab_array.length; i++){
         clickOnTab(event.target);
     });
 }
+
+
+
+
+
+class config{
+    constructor(url,contentId){
+        this.url = url;
+        this.contentId=contentId;
+    }
+}
+
+class catalog extends config{
+    showGifs(){
+        fetch(this.url)
+        .then((response)=>{
+            return response.json();
+        })
+        .then((response)=>{
+            console.log(response);
+            response.forEach((item)=>{
+                const node = document.createElement('div');
+                node.innerHTML = `id: ${item.id} <br> userId: ${item.userId} <br> Title: ${item.title} <br> Body: ${item.body}`;
+                document.getElementById(this.contentId).appendChild(node);
+                //node.className = "postClass";
+            });
+        });
+    }     
+}
+const urlPosts = 'https://jsonplaceholder.typicode.com/posts?userId=1';//aq linki katebis gifebis????
+const postres = "catsResult";
+
+const url2 = 'https://jsonplaceholder.typicode.com/posts?userId=2';//aq linki memebis gifebis????
+const content2id = "memesResult";
+
+const tab1Catalog = new catalog(urlPosts,postres);
+tab1Catalog.showGifs();
+const tab2Catalog = new catalog(url2,content2id);
+tab2Catalog.showGifs();
+
+
