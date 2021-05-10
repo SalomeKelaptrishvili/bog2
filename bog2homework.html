@@ -7,27 +7,35 @@
 <body>
     <div class="headerBlock">
         <h1>Giphy API Example</h1>
-        <div class="tab-list">
+        <div id="tabList" class="tab-list">
             <button class="tab-item tab-active">Internet Cats</button>
             <button class="tab-item">Meme's</button>
             <button class="tab-item">Typing</button>
             <button class="tab-item">Space</button>
             <button class="tab-item">Rick and Morty</button>
+
+            <!-- <input type="button" class="tab-item tab-active" value="Internet Cats">
+            <input type="button" class="tab-item" value="Meme's">
+            <input type="button" class="tab-item" value="Typing">
+            <input type="button" class="tab-item" value="Space">
+            <input type="button" class="tab-item" value="Rick and Morty"> -->
         </div>
         <div class="searchBar">
-            <input class="inputBox" type="text" name="inputSearch">
-            <button class="submitButton">Submit</button>
+            <input id="inputValue" class="inputBox" type="text" name="inputSearch">
+            <button onclick="addSearchButtons()" class="submitButton">Submit</button>
             <button class="trendingButton">See what's trending</button>
         </div>
     </div>
     <hr>
       <!-- contents -->
-      <div id="catsResult" class="tab-content content-active">tab 1 content</div>
-      <div id="memesResult" class="tab-content">tab 2 content</div>
-      <div id="typingResult" class="tab-content">tab 3 content</div>
-      <div id="spaceResult" class="tab-content">tab 4 content</div>
-      <div id="rickResult" class="tab-content">tab 5 content</div>
-  
+    <div id="gifresult" class="contentContainer">
+     
+        <div id="catsresult" class="tab-content content-active">tab 1 content</div>
+        <div id="memesResult" class="tab-content">tab 2 content</div>
+        <div id="typingResult" class="tab-content">tab 3 content</div>
+        <div id="spaceResult" class="tab-content">tab 4 content</div>
+        <div id="rickResult" class="tab-content">tab 5 content</div>
+    </div>
     
 </body>
 <script src="bog2homework.js"></script>
