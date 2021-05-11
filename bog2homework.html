@@ -5,41 +5,46 @@
     <link rel="stylesheet" type="text/css" href="bog2homework.css">
 </head>
 <body>
-    <div class="headerBlock">
-        <h1>Giphy API Example</h1>
-        <div id="tabList" class="tab-list">
-            <button class="tab-item">Internet Cats</button>
-            <button class="tab-item">Meme's</button>
-            <button class="tab-item">Typing</button>
-            <button class="tab-item">Space</button>
-            <button class="tab-item">Rick and Morty</button>
+    <div class="container">
+        <div class="headerBlock">
+            <h1>Giphy API Example</h1>
+            <div id="tabList" class="tab-list">
+                <button class="tab-item">Internet Cats</button>
+                <button class="tab-item">Meme's</button>
+                <button class="tab-item">Typing</button>
+                <button class="tab-item">Space</button>
+                <button class="tab-item">Rick and Morty</button>
+            </div>
+            <div class="searchBar">
+                <input id="inputValue" class="inputBox" type="text" name="inputSearch">
+                <!-- <div onclick="submitClick()" class="submitButton">Submit</div>
+                <div contenteditable="true" onclick="trending()" class="trendingButton">See what's trending</div> -->
+                <button onclick="submitClick()" class="submitButton">Submit</button>
+                <button onclick="trending()" class="trendingButton">See what's trending</button>
+                
+                <!-- <button onclick="addSearchButtons()" class="submitButton">Submit</button>
+                <button onclick="trending()" class="trendingButton">See what's trending</button> -->
+            </div>
         </div>
-        <div class="searchBar">
-            <input id="inputValue" class="inputBox" type="text" name="inputSearch">
-            <!-- <div onclick="submitClick()" class="submitButton">Submit</div>
-            <div contenteditable="true" onclick="trending()" class="trendingButton">See what's trending</div> -->
-            <button onclick="submitClick()" class="submitButton">Submit</button>
-            <button onclick="trending()" class="trendingButton">See what's trending</button>
-            
-            <!-- <button onclick="addSearchButtons()" class="submitButton">Submit</button>
-            <button onclick="trending()" class="trendingButton">See what's trending</button> -->
-        </div>
-    </div>
-    <hr>
-      <!-- contents -->
-    <div class="gifblock">
-        <div id="gifCont" class="gifcontainer">
-        <!-- <div id="box" class="gifBox"> -->
-            <!-- <div id="gifresult" class="gifcontent"> gifebs vamateb  ak -->
-                <!-- <div id="c" class="tab-content"></div> -->
 
-                <!-- <div class="tab-content">tab 2 content</div> -->
-                <!-- <div class="tab-content">tab 3 content</div>
-                <div class="tab-content">tab 4 content</div>
-                <div class="tab-content">tab 5 content</div> -->
+        <hr>
+
+        <!-- contents -->
+        <div class="gifblock">
+            <div id="gifCont" class="gifcontainer">
+            <!-- <div id="box" class="gifBox"> -->
+                <!-- <div id="gifresult" class="gifcontent"> gifebs vamateb  ak -->
+                    <!-- <div id="c" class="tab-content"></div> -->
+
+                    <!-- <div class="tab-content">tab 2 content</div> -->
+                    <!-- <div class="tab-content">tab 3 content</div>
+                    <div class="tab-content">tab 4 content</div>
+                    <div class="tab-content">tab 5 content</div> -->
+                <!-- </div> -->
             <!-- </div> -->
-        <!-- </div> -->
+            </div>
         </div>
+
     </div>
     
 </body>

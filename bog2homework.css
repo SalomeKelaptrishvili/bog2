@@ -3,6 +3,12 @@
     margin:0;
     padding:0;
 }
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .headerBlock{
     /* height: 136px; */
     width: 100%;
