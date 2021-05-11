@@ -31,12 +31,15 @@
     border:none;
 }
 .searchBar{
+    width:100%;
     margin-top:6.4px;
     height:37px;
     font-size: 1rem;
     font-weight: 400;
-    display: block;
+    display: flex;
     text-align: center;
+    justify-content: center;
+    column-gap: 5px;
 }
 .inputBox{
     padding-left:2px;
@@ -50,21 +53,21 @@
 }
 .submitButton{
     padding:4px 8px; 
-    /* border: 1px solid red; */
-    /* border:none; */
     margin-bottom:6px;
     font-size: 0.875rem;
     border-radius: 4px;
     background-color: #28a745;
-    /* border-color: #28a745;  */
+    border-color: #28a745; 
+    height:31px;
+    width:62px;
+    cursor: default;
 }
 .trendingButton{
-    width: 140px;
-    /* height: 31px; */
+    height: 31px;
     padding-left:8px;
     padding-right:8px;
-    padding-top:5px;
-    padding-bottom:5px;
+    padding-top:4px;
+    padding-bottom:4px;
     margin-bottom:6px;
     /* border:1px solid transparent; */
     border-radius: 0.2rem;
@@ -73,7 +76,7 @@
     background-color: #dc3545;
     /* border-color: #dc3545; */
     text-align: center;
-    /* border:none; */
+    cursor: default;
 }
 h1{
     margin-bottom: 8px;
@@ -113,10 +116,14 @@ hr{
     flex-wrap: wrap;
     justify-content: space-between;
     row-gap: 10px;
-    width: 70%;
+    width: 65%;
 }
 .gifcontainer{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+.newGifClass{
+    width:185px;
+    height: 120px;
 }

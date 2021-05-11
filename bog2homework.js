@@ -1,5 +1,5 @@
 //initial tab list
-let buttons = ["Internet Cats","Meme's","Typing","Space","Rick and Morty"];
+let buttonsNames = ["Internet Cats","Meme's","Typing","Space","Rick and Morty"];
 
 //event listeners
 let tab_array = document.getElementsByClassName("tab-item");
@@ -8,20 +8,26 @@ let tab_array = document.getElementsByClassName("tab-item");
 
 function clickOnTab(tab){
     for(let i = 0; i < tab_array.length; i++){
+        // if(!tab_array.includes(tab)){
+        //     for(let k = 0; k < tab_array.length; k++){
+        //         tab_array[k].classList.remove("tab-active");
+        //     }
+        // }
+
         if(tab_array[i] == tab){
             tab_array[i].classList.add("tab-active");
             
-            var find = buttons[i];
-            ragaca(find);
+            var find = buttonsNames[i];
+            changeTabGifs(find);
             
         } else {
             tab_array[i].classList.remove("tab-active");
 
-            let bla = document.getElementById("gifresult");
+            let parentId = document.getElementById("gifresult");
 
-            if(bla.childElementCount != 0){
-                while(bla.childElementCount != 0){
-                    bla.removeChild(bla.childNodes[0]);
+            if(parentId.childElementCount != 0){
+                while(parentId.childElementCount != 0){
+                    parentId.removeChild(parentId.childNodes[0]);
                 }
             }
         }
@@ -61,8 +67,9 @@ for(let i = 0; i < tab_array.length; i++){
                         let newLink = gifList[i].images.original.url;
                         newGif.setAttribute("src", newLink);
                         document.getElementById(contentId).appendChild(newGif);
-                        newGif.setAttribute("width","150px");
-                        newGif.setAttribute("height","100px");
+                        newGif.classList.add("newGifClass");
+                        // newGif.setAttribute("width","150px");
+                        // newGif.setAttribute("height","100px");
                     }
                 } catch(error){
                     console.log(error);
@@ -92,8 +99,7 @@ for(let i = 0; i < tab_array.length; i++){
         }     
     }
     
-function ragaca(find){
-    // let find = "funnycat";
+function changeTabGifs(find){
     let urlgif = `https://api.giphy.com/v1/gifs/search?q=${find}&limit=15&api_key=aFFKTuSMjd6j0wwjpFCPXZipQbcnw3vB`;
 
     let gifStoreId = "gifresult";
@@ -102,6 +108,22 @@ function ragaca(find){
     gifCatalog.showGifs();
 }
 
+function trending(){
+    let parentId = document.getElementById("gifresult");
+
+    if(parentId.childElementCount != 0){
+        while(parentId.childElementCount != 0){
+            parentId.removeChild(parentId.childNodes[0]);
+        }
+    }
+
+    let trengingUrl = `https://api.giphy.com/v1/gifs/trending?&limit=15&api_key=aFFKTuSMjd6j0wwjpFCPXZipQbcnw3vB`;
+
+    let gifStoreId = "gifresult";
+
+    const gifCatalog = new catalog(trengingUrl, gifStoreId);
+    gifCatalog.showGifs();
+}
 
 
 
