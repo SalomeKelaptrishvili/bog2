@@ -3,27 +3,25 @@ let buttonsNames = ["Internet Cats","Meme's","Typing","Space","Rick and Morty"];
 
 //event listeners
 let tab_array = document.getElementsByClassName("tab-item");
-// let content_array = document.getElementById("c");
-// console.log(content_array);
+for(let i = 0; i < tab_array.length; i++){
+
+}
+
 
 function clickOnTab(tab){
     for(let i = 0; i < tab_array.length; i++){
-        // if(!tab_array.includes(tab)){
-        //     for(let k = 0; k < tab_array.length; k++){
-        //         tab_array[k].classList.remove("tab-active");
-        //     }
-        // }
+        
 
         if(tab_array[i] == tab){
-            tab_array[i].classList.add("tab-active");
+            // tab_array[i].classList.add("tab-active");
             
             var find = buttonsNames[i];
             changeTabGifs(find);
             
         } else {
-            tab_array[i].classList.remove("tab-active");
+            // tab_array[i].classList.remove("tab-active");
 
-            let parentId = document.getElementById("gifresult");
+            let parentId = document.getElementById("gifCont");
 
             if(parentId.childElementCount != 0){
                 while(parentId.childElementCount != 0){
@@ -33,15 +31,16 @@ function clickOnTab(tab){
         }
     }
 }
+function rame(){
+    for(let i = 0; i < tab_array.length; i++){
+        tab_array[i].addEventListener('click',(event)=>{
+            clickOnTab(event.target);
+            // console.log("kfhsfds");
+        });
+    }  
+}   
+rame();
 
-for(let i = 0; i < tab_array.length; i++){
-    tab_array[i].addEventListener('click',(event)=>{
-        clickOnTab(event.target);
-        // console.clear();
-        // var find = buttons[i];
-        // ragaca(find);
-    });
-}
 
 
 
@@ -56,60 +55,53 @@ for(let i = 0; i < tab_array.length; i++){
     class catalog extends config{
         
         showGifs(){
-            async function showGifsList(url,contentId){
+            async function showGifsList(url){
                 try{
                     const response = await fetch(url,{method:'GET'});
                     const result = await response.json();
                     console.log(result);
                     let gifList = result.data;
                     for(let i in gifList){
+                        //create box
+                        let newBox = document.createElement('div');
+                        newBox.classList.add('gifcontent');
+                        // newBox.id = "gifresult";
+                        document.getElementById('gifCont').appendChild(newBox);
+
+                        //create img tag
                         let newGif = document.createElement('img');
                         let newLink = gifList[i].images.original.url;
                         newGif.setAttribute("src", newLink);
-                        document.getElementById(contentId).appendChild(newGif);
+                        newBox.appendChild(newGif);
                         newGif.classList.add("newGifClass");
-                        // newGif.setAttribute("width","150px");
-                        // newGif.setAttribute("height","100px");
+                        
+                        //create div tag for rating
+                        let newRate = document.createElement('div');
+                        newRate.classList.add("rateLine");
+                        let newRateLink = gifList[i].rating; //es sworia : g
+                        console.log(newRateLink);
+                        let textHere = document.createTextNode("rating: " + newRateLink);
+                        newRate.appendChild(textHere);
+
+                        newBox.appendChild(newRate);
                     }
                 } catch(error){
                     console.log(error);
                 }
             }
-            showGifsList(this.url,this.contentId);
-            
-            // fetch(this.url,{
-            //     method: 'GET',
-            // })
-            // .then((response)=>{
-            //     return response.json();
-            // })
-            // .then((response)=>{
-            //     console.log(response);
-            //     let gifList = response.data;
-            //     console.log(gifList);
-            //     for(let i in gifList){
-            //         let newGif = document.createElement('img');
-            //         let newLink = gifList[i].images.original.url;
-            //         newGif.setAttribute("src", newLink);
-            //         document.getElementById(this.contentId).appendChild(newGif);
-            //         newGif.setAttribute("width","150px");
-            //         console.log(newLink);
-            //     }
-            // });
+            showGifsList(this.url);
         }     
     }
     
 function changeTabGifs(find){
-    let urlgif = `https://api.giphy.com/v1/gifs/search?q=${find}&limit=15&api_key=aFFKTuSMjd6j0wwjpFCPXZipQbcnw3vB`;
+    let urlgif = `https://api.giphy.com/v1/gifs/search?q=${find}&limit=16&api_key=aFFKTuSMjd6j0wwjpFCPXZipQbcnw3vB`;
 
-    let gifStoreId = "gifresult";
-
-    const gifCatalog = new catalog(urlgif, gifStoreId);
+    const gifCatalog = new catalog(urlgif);
     gifCatalog.showGifs();
 }
 
 function trending(){
-    let parentId = document.getElementById("gifresult");
+    let parentId = document.getElementById("gifCont");
 
     if(parentId.childElementCount != 0){
         while(parentId.childElementCount != 0){
@@ -117,14 +109,42 @@ function trending(){
         }
     }
 
-    let trengingUrl = `https://api.giphy.com/v1/gifs/trending?&limit=15&api_key=aFFKTuSMjd6j0wwjpFCPXZipQbcnw3vB`;
+    let trendingUrl = `https://api.giphy.com/v1/gifs/trending?&limit=16&api_key=aFFKTuSMjd6j0wwjpFCPXZipQbcnw3vB`;
 
-    let gifStoreId = "gifresult";
-
-    const gifCatalog = new catalog(trengingUrl, gifStoreId);
+    const gifCatalog = new catalog(trendingUrl);
     gifCatalog.showGifs();
 }
 
+function submitClick(){
+    let newB = document.createElement('button');
+    let inputText = document.getElementById("inputValue").value;
+    let newButt = document.createTextNode(inputText);
+    newB.appendChild(newButt);
+    
+    if(inputText != ""){
+            
+        if(buttonsNames.length > 5){
+            buttonsNames.shift();
+            tab_array[0].remove();
+        }
+        newB.classList.add("tab-item");
+        document.getElementById("tabList").appendChild(newB);
+
+        buttonsNames.push(inputText); 
+        
+        // console.log("butt: " + buttonsNames);
+        // console.log(tab_array);
+
+        document.getElementById("tabList").appendChild(newB);
+        // rame();
+        // console.log(document.getElementsByClassName("tab-list")[0].lastChild);
+        // document.getElementById("tabList").lastChild.click();
+
+    }
+    rame();
+    document.getElementById("tabList").lastChild.click();
+    // changeTabGifs(inputText);
+}
 
 
 
