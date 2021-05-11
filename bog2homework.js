@@ -1,85 +1,106 @@
+//initial tab list
+let buttons = ["Internet Cats","Meme's","Typing","Space","Rick and Morty"];
+
 //event listeners
 let tab_array = document.getElementsByClassName("tab-item");
-let content_array = document.querySelectorAll(".tab-content");
+// let content_array = document.getElementById("c");
+// console.log(content_array);
 
 function clickOnTab(tab){
     for(let i = 0; i < tab_array.length; i++){
         if(tab_array[i] == tab){
             tab_array[i].classList.add("tab-active");
-            content_array[i].classList.add("content-active");
+            
+            var find = buttons[i];
+            ragaca(find);
+            
         } else {
             tab_array[i].classList.remove("tab-active");
-            content_array[i].classList.remove("content-active");
+
+            let bla = document.getElementById("gifresult");
+
+            if(bla.childElementCount != 0){
+                while(bla.childElementCount != 0){
+                    bla.removeChild(bla.childNodes[0]);
+                }
+            }
         }
     }
 }
+
 for(let i = 0; i < tab_array.length; i++){
     tab_array[i].addEventListener('click',(event)=>{
         clickOnTab(event.target);
+        // console.clear();
+        // var find = buttons[i];
+        // ragaca(find);
     });
 }
 
-//classes
-class config{
-    constructor(url,contentId){
-        this.url = url;
-        this.contentId = contentId;
-    }
-}
 
 
-class catalog extends config{
-    
-    showGifs(){
-        async function showGifsList(url,contentId){
-            try{
-                const response = await fetch(url,{method:'GET'});
-                const result = await response.json();
-                console.log(result);
-                let gifList = result.data;
-                for(let i in gifList){
-                    let newGif = document.createElement('img');
-                    let newLink = gifList[i].images.original.url;
-                    newGif.setAttribute("src", newLink);
-                    document.getElementById(contentId).appendChild(newGif);
-                    newGif.setAttribute("width","150px");
-                }
-            } catch(error){
-                console.log(error);
-            }
+    //classes
+    class config{
+        constructor(url,contentId){
+            this.url = url;
+            this.contentId = contentId;
         }
-        showGifsList(this.url,this.contentId);
+    }
+
+    class catalog extends config{
         
-        // fetch(this.url,{
-        //     method: 'GET',
-        // })
-        // .then((response)=>{
-        //     return response.json();
-        // })
-        // .then((response)=>{
-        //     console.log(response);
-        //     let gifList = response.data;
-        //     console.log(gifList);
-        //     for(let i in gifList){
-        //         let newGif = document.createElement('img');
-        //         let newLink = gifList[i].images.original.url;
-        //         newGif.setAttribute("src", newLink);
-        //         document.getElementById(this.contentId).appendChild(newGif);
-        //         newGif.setAttribute("width","150px");
-        //         console.log(newLink);
-        //     }
-        // });
-    }     
+        showGifs(){
+            async function showGifsList(url,contentId){
+                try{
+                    const response = await fetch(url,{method:'GET'});
+                    const result = await response.json();
+                    console.log(result);
+                    let gifList = result.data;
+                    for(let i in gifList){
+                        let newGif = document.createElement('img');
+                        let newLink = gifList[i].images.original.url;
+                        newGif.setAttribute("src", newLink);
+                        document.getElementById(contentId).appendChild(newGif);
+                        newGif.setAttribute("width","150px");
+                        newGif.setAttribute("height","100px");
+                    }
+                } catch(error){
+                    console.log(error);
+                }
+            }
+            showGifsList(this.url,this.contentId);
+            
+            // fetch(this.url,{
+            //     method: 'GET',
+            // })
+            // .then((response)=>{
+            //     return response.json();
+            // })
+            // .then((response)=>{
+            //     console.log(response);
+            //     let gifList = response.data;
+            //     console.log(gifList);
+            //     for(let i in gifList){
+            //         let newGif = document.createElement('img');
+            //         let newLink = gifList[i].images.original.url;
+            //         newGif.setAttribute("src", newLink);
+            //         document.getElementById(this.contentId).appendChild(newGif);
+            //         newGif.setAttribute("width","150px");
+            //         console.log(newLink);
+            //     }
+            // });
+        }     
+    }
+    
+function ragaca(find){
+    // let find = "funnycat";
+    let urlgif = `https://api.giphy.com/v1/gifs/search?q=${find}&limit=15&api_key=aFFKTuSMjd6j0wwjpFCPXZipQbcnw3vB`;
+
+    let gifStoreId = "gifresult";
+
+    const gifCatalog = new catalog(urlgif, gifStoreId);
+    gifCatalog.showGifs();
 }
-
-let searchKeyWord = "funnycat";
-let urlgif = `https://api.giphy.com/v1/gifs/search?q=${searchKeyWord}&api_key=aFFKTuSMjd6j0wwjpFCPXZipQbcnw3vB`;
-
-let gifStoreId = "gifresult";
-
-const gifCatalog = new catalog(urlgif,gifStoreId);
-gifCatalog.showGifs();
-
 
 
 

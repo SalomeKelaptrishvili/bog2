@@ -25,9 +25,10 @@
     margin:3px;
     font-size:0.875rem;
     font-weight: 400;
-    border:1px solid transparent;
+    /* border:1px solid grey; */
     background-color: rgb(239,239,239);
     height:31px;
+    border:none;
 }
 .searchBar{
     margin-top:6.4px;
@@ -48,37 +49,31 @@
     height: 30px;
 }
 .submitButton{
-    padding-left:8px;
-    padding-right:8px;
-    padding-top:4px;
-    padding-bottom:4px;
-    border:1px solid transparent;
+    padding:4px 8px; 
+    /* border: 1px solid red; */
+    /* border:none; */
     margin-bottom:6px;
-    height:31px;
-    width: 62px;
     font-size: 0.875rem;
-    border-radius: 0.2rem;
-    font-weight: 400;
-    text-align: center;
-    color: #fff;
+    border-radius: 4px;
     background-color: #28a745;
-    border-color: #28a745;
+    /* border-color: #28a745;  */
 }
 .trendingButton{
     width: 140px;
-    height: 31px;
+    /* height: 31px; */
     padding-left:8px;
     padding-right:8px;
-    padding-top:4px;
-    padding-bottom:4px;
+    padding-top:5px;
+    padding-bottom:5px;
     margin-bottom:6px;
-    border:1px solid transparent;
+    /* border:1px solid transparent; */
     border-radius: 0.2rem;
     font-weight: 400;
     color: #fff;
     background-color: #dc3545;
-    border-color: #dc3545;
+    /* border-color: #dc3545; */
     text-align: center;
+    /* border:none; */
 }
 h1{
     margin-bottom: 8px;
@@ -109,6 +104,19 @@ hr{
     color:black;
 }
 .tab-active{
-    background-color: grey;
+    /* background-color: grey; */
     color:black;
+    border:5px solid rgb(160, 160, 248);
+}
+.gifcontent{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 10px;
+    width: 70%;
+}
+.gifcontainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
